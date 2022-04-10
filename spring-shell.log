@@ -1,0 +1,88 @@
+1649486119946:flux
+1649493296667:speechToText
+1649493326950:flux
+1649493358492:speechToText
+1649493421466:speechtotext
+1649493427273:help
+1649493434012:speech-to-text
+1649494401943:stacktrace
+1649494558450:speech-to-text
+1649494584137:stop-translation 0
+1649494866967:speech-to-text
+1649494881611:stop-translation 0
+1649495048876:speech-to-text
+1649495120335:stop-translation 0
+1649495487737:speech-to-text
+1649495496319:stop-translation 0
+1649496842789:speech-to-text
+1649497433845:soeecg-to-text
+1649497445400:speech-to-text
+1649497455400:stop-translation 0
+1649497498330:speech-to-text
+1649497505169:stop-translation
+1649497517484:stop-translation 1
+1649497623996:speech-to-text
+1649497633576:stop-translation 0
+1649502862797:speech-to-text
+1649506721632:stop-translation 0
+1649512718288:translate-file recordings/record_2022-04-09 15-17-04.wav
+1649512746962:stacktrace
+1649512801281:translate-file recordings/record.wav
+1649517746222:stacktrace
+1649517783060:translate-file recordings/record.wav
+1649518446403:stacktrace
+1649518523388:translate-file recordings/record.wav
+1649520651638:speech-to-text
+1649520720726:translate-file recordings/record.wav
+1649520745791:stop-translation 0
+1649520890714:speech-to-text
+1649520967222:translate-file recordings/record.wav
+1649520978829:stacktrace
+1649521002873:translate-file recordings/record.wav
+1649521028240:stop-translation 0
+1649521044806:translate-file recordings/record.wav
+1649521204995:speech-to-text
+1649521216253:translate-file recordings/record.wav
+1649521233249:stacktrace
+1649521262499:stop-translation 0
+1649521356369:speech-to-text
+1649521392224:stop-translation 1
+1649521688622:speech-to-text
+1649521721877:stop-translation 0
+1649521758955:translate-file recordings/record.wav
+1649522404852:speech-to-text
+1649522472384:stop-translation 0
+1649522496990:translate-file recordings/record.wav
+1649522966169:speech-to-text
+1649522999326:translate-file recordings/record.wav
+1649528261858:speech-to-text
+1649528987992:stop-translation 0
+1649529378135:speech-to-text
+1649529439155:stop-translation 0
+1649529997219:speech-to-text
+1649530021391:stop-translation 0
+1649572375705:speech-to-text
+1649572413683:stop-translation 0
+1649572729887:speech-to-text
+1649572754937:stop-translation
+1649572762976:stop-translation 0
+1649573047389:speech-to-text
+1649573071252:stop-translation 0
+1649573152675:speech-to-text
+1649573617050:stop-translation 0
+1649573945609:speech-to-text
+1649573964021:stop-translation 0
+1649574037454:speech-to-text
+1649581759734:stop-translation
+1649581772348:stop-translation 0
+1649581943712:speech-to-text
+1649582009048:stop-translation 0
+1649582117004:speech-to-text
+1649588928206:sppt 1
+1649588934417:sptt 1
+1649589086439:stop-sptt 0
+1649589185441:sptt 1
+1649591330779:translate-file recordings/record.wav
+1649592184225:sptt 3
+1649592897802:sptt 1
+1649593261018:translate-file recordings/record.wav
