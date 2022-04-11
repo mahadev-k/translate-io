@@ -39,6 +39,21 @@ public class TranslateShell {
         return "Thread running to stop use command stop-sptt thread id :: "+ threadId;
     }
 
+    @ShellMethod("Speech To Text")
+    public String spttLive(){
+        log.info("Started Live Translation");
+        Integer threadId = translateService.liveSpeechToText(deepgramService);
+        return "Thread running to stop use command stop-sptt thread id :: "+ threadId;
+    }
+
+    @ShellMethod("Stop Translation")
+    public String stopSpttLive(
+            @ShellOption Integer id
+    ){
+        translateService.stopLiveTranslationThread(id);
+        return "SUCCESS";
+    }
+
     @ShellMethod("Stop Translation")
     public String stopSptt(
             @ShellOption Integer id

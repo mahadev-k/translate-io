@@ -68,7 +68,7 @@ public class DeepgramEndpoint implements WSSSendMessage, WebSocket.Listener {
 
     @Override
     public void sendMessage(InputStream inputStream, WebSocket ws) {
-        Log.info("Sending messages");
+        //Log.info("Sending messages");
         try{
             byte[] byteArray = IOUtils.toByteArray(inputStream);
             ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);

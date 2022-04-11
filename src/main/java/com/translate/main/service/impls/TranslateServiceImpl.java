@@ -1,27 +1,42 @@
 package com.translate.main.service.impls;
 
-import com.translate.main.connection.clients.DeepgramClient;
+import com.translate.main.service.interfaces.LiveTranscription;
 import com.translate.main.service.interfaces.RecordingToText;
 import com.translate.main.service.interfaces.SpeechToText;
 import com.translate.main.service.interfaces.TranslateService;
 import org.jline.utils.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class TranslateServiceImpl implements TranslateService {
 
     Map<Integer, SpeechToText> threadMap = new HashMap<>();
+    Map<Integer, LiveTranscription> threadMapLive = new HashMap<>();
     Integer threadId = 0;
+
+    @Override
+    public void stopLiveTranslationThread(Integer id) {
+        if(threadMap.get(id) != null){
+            ((DeepgramService) threadMap.get(id)).stopDeepgramLiveThread();
+        }
+    }
+
+    @Override
+    public Integer liveSpeechToText(LiveTranscription liveTranscription) {
+        try {
+            liveTranscription.convertLiveStream();
+        } catch (IOException e) {
+            Log.error("Error IO",e);
+        }
+        threadMapLive.put(threadId, liveTranscription);
+        return threadId++;
+    }
 
     @Override
     public Integer speechToText(SpeechToText speechToText, long timeInMins) {

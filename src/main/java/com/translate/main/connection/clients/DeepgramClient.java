@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class DeepgramClient {
 
-    public static final String API_KEY = "c8ac7abc19e6b92160ffbcf4ec54d8a051cdb0cf";
+    public static final String API_KEY = "f8233c522b607708f4f8c2e03287f114e5df1860";
 
     public static HttpRequest createPostRequest(String uri, HttpRequest.BodyPublisher bodyPublisher) throws FileNotFoundException {
 
