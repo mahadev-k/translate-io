@@ -31,7 +31,7 @@ import java.util.concurrent.TimeoutException;
 
 public class DeepgramClient {
 
-    public static final String API_KEY = "f02b00f59764ce45638c576292c192d119db104f";
+    public static final String API_KEY = "403381c7c288508c393c7640052a46934e37a4f1";
 
     public static HttpRequest createPostRequest(String uri, HttpRequest.BodyPublisher bodyPublisher) throws FileNotFoundException {
 
