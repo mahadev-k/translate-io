@@ -41,9 +41,9 @@ public class DeepgramService implements SpeechToText, RecordingToText, LiveTrans
     }
 
     @Override
-    public void recordingToText(String fileName) throws FileNotFoundException {
+    public void recordingToText(String fileName, String language) throws FileNotFoundException {
         DeepgramClient.recordingToText(HttpRequest.BodyPublishers
-                .ofFile(Paths.get(fileName)));
+                .ofFile(Paths.get(fileName)), language);
         //TranslateUtils.printResponse(transcription);
     }
 

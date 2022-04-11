@@ -32,10 +32,12 @@ public class TranslateShell {
 
     @ShellMethod("Speech To Text")
     public String sptt(
-            @ShellOption @Max(30) Integer timeInMins
+            @ShellOption @Max(30) Long timeInMins,
+            @ShellOption @Max(59) Long timeInSeconds,
+            @ShellOption(defaultValue = "en-US") String language
     ){
         log.info("Started Recording for Translation");
-        Integer threadId = translateService.speechToText(deepgramService, timeInMins);
+        Integer threadId = translateService.speechToText(deepgramService, timeInMins, timeInSeconds, language);
         return "Thread running to stop use command stop-sptt thread id :: "+ threadId;
     }
 
@@ -43,7 +45,7 @@ public class TranslateShell {
     public String spttLive(){
         log.info("Started Live Translation");
         Integer threadId = translateService.liveSpeechToText(deepgramService);
-        return "Thread running to stop use command stop-sptt thread id :: "+ threadId;
+        return "Thread running to stop use command stop-sptt-live thread id :: "+ threadId;
     }
 
     @ShellMethod("Stop Translation")
@@ -64,8 +66,9 @@ public class TranslateShell {
 
     @ShellMethod("Translate file")
     public void translateFile(
-            @ShellOption String fileName
+            @ShellOption String fileName,
+            @ShellOption(defaultValue = "en-US") String language
     ) throws FileNotFoundException {
-        translateService.recordingToText(fileName, deepgramService);
+        translateService.recordingToText(fileName, deepgramService, language);
     }
 }

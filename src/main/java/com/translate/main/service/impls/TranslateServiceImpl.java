@@ -39,10 +39,10 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public Integer speechToText(SpeechToText speechToText, long timeInMins) {
+    public Integer speechToText(SpeechToText speechToText, long timeInMins, long timeInSeconds, String language) {
         try {
             speechToText.convertSpeechToText();
-            new Thread(stopThread(speechToText, timeInMins)).start();
+            new Thread(stopThread(speechToText, timeInMins, timeInSeconds, language)).start();
         } catch (IOException e) {
             Log.error("Error IO",e);
         }
@@ -50,15 +50,16 @@ public class TranslateServiceImpl implements TranslateService {
         return threadId++;
     }
 
-    private static Runnable stopThread(SpeechToText speechToText, long timeInMins){
+    private static Runnable stopThread(SpeechToText speechToText, long timeInMins, long timeInSeconds, String language){
         LocalDateTime future = LocalDateTime.now().plusMinutes(timeInMins);
+        future.plusSeconds(timeInSeconds);
         return () -> {
             while(true) {
                 if (LocalDateTime.now().isAfter(future)) {
                     ((DeepgramService) speechToText).stopThread();
                     if(!((DeepgramService)speechToText).threadAlive()) {
                         try {
-                            ((DeepgramService) speechToText).recordingToText("recordings/record.wav");
+                            ((DeepgramService) speechToText).recordingToText("recordings/record.wav", language);
                         } catch (FileNotFoundException e) {
                             Log.error("File not found", e);
                         }
@@ -79,7 +80,7 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public void recordingToText(String filePath, RecordingToText recordingToText) throws FileNotFoundException {
-        recordingToText.recordingToText(filePath);
+    public void recordingToText(String filePath, RecordingToText recordingToText, String language) throws FileNotFoundException {
+        recordingToText.recordingToText(filePath, language);
     }
 }

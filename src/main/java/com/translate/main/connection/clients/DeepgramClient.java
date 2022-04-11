@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class DeepgramClient {
 
-    public static final String API_KEY = "f8233c522b607708f4f8c2e03287f114e5df1860";
+    public static final String API_KEY = "2e751636e2fc88cc064f0709620481a79f7f0130";
 
     public static HttpRequest createPostRequest(String uri, HttpRequest.BodyPublisher bodyPublisher) throws FileNotFoundException {
 
@@ -45,7 +45,7 @@ public class DeepgramClient {
     public static void getResponse(HttpRequest request) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
-                .connectTimeout(Duration.ofSeconds(10))
+                .connectTimeout(Duration.ofSeconds(60))
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         Transcription transcription = TranslateUtils.mapResponse(response.body());
@@ -53,8 +53,8 @@ public class DeepgramClient {
     }
 
 
-    public static void recordingToText(HttpRequest.BodyPublisher bodyPublisher) throws FileNotFoundException {
-        HttpRequest httpRequest = DeepgramClient.createPostRequest("https://api.deepgram.com/v1/listen",bodyPublisher);
+    public static void recordingToText(HttpRequest.BodyPublisher bodyPublisher, String language) throws FileNotFoundException {
+        HttpRequest httpRequest = DeepgramClient.createPostRequest("https://api.deepgram.com/v1/listen"+"?language="+language,bodyPublisher);
         try {
             DeepgramClient.getResponse(httpRequest);
         } catch (IOException e) {

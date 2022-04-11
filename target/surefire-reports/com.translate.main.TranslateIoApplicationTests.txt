@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.translate.main.TranslateIoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.343 s - in com.translate.main.TranslateIoApplicationTests

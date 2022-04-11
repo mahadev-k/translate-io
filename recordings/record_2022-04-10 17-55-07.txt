@@ -1,1 +1,0 @@
-so today we are trying to analyze the speech to fixed api of the deepgram he will find out whether it is working fine or not right now in one minute it is going to record my voice and transcribing into a text file we will see whether it is working fine or not now but it is one
