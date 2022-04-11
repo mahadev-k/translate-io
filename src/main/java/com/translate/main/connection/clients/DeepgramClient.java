@@ -24,17 +24,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
 public class DeepgramClient {
 
-    public static final String API_KEY = "2e751636e2fc88cc064f0709620481a79f7f0130";
+    public static final String API_KEY = "f02b00f59764ce45638c576292c192d119db104f";
 
     public static HttpRequest createPostRequest(String uri, HttpRequest.BodyPublisher bodyPublisher) throws FileNotFoundException {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
-                .timeout(Duration.ofMinutes(1))
+                .timeout(Duration.ofMinutes(5))
                 .header("Content-Type", "audio/wav")
                 .header("Authorization", "Token "+API_KEY)
                 .POST(bodyPublisher)
@@ -42,14 +45,21 @@ public class DeepgramClient {
         return request;
     }
 
-    public static void getResponse(HttpRequest request) throws IOException, InterruptedException {
+    public static void getResponse(HttpRequest request) throws IOException, InterruptedException, ExecutionException, TimeoutException {
         HttpClient httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
-                .connectTimeout(Duration.ofSeconds(60))
+                .connectTimeout(Duration.ofSeconds(300))
                 .build();
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        Transcription transcription = TranslateUtils.mapResponse(response.body());
-        TranslateUtils.printResponse(transcription);
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(TranslateUtils::mapResponse)
+                .thenAccept(t -> {
+                    try {
+                        TranslateUtils.printResponse(t);
+                    } catch (IOException e) {
+                        Log.error("IO exc", e);
+                    }
+                }).get(300, TimeUnit.SECONDS);
     }
 
 
@@ -60,6 +70,10 @@ public class DeepgramClient {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
             e.printStackTrace();
         }
     }

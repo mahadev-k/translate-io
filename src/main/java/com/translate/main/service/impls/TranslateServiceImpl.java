@@ -51,8 +51,7 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     private static Runnable stopThread(SpeechToText speechToText, long timeInMins, long timeInSeconds, String language){
-        LocalDateTime future = LocalDateTime.now().plusMinutes(timeInMins);
-        future.plusSeconds(timeInSeconds);
+        LocalDateTime future = LocalDateTime.now().plusMinutes(timeInMins).plusSeconds(timeInSeconds);
         return () -> {
             while(true) {
                 if (LocalDateTime.now().isAfter(future)) {
