@@ -8,7 +8,7 @@ mvn spring-boot:run <br/>
 shell command <br/>
 
 <pre>
-sptt <mins> <seconds> <language(Optional)>- This will start recording audio for n minutes and then the whole audio will transcribed and shown in the notepad : Windows
-stop-sptt <id> - Will stop recording and translation. 
-translate-file <file> <language(Optional)> - Ex translate-file recordings/record.wav will translate the file to english and show you the transcription 
+sptt {mins} {seconds} {language(Optional)}- This will start recording audio for n minutes and then the whole audio will transcribed and shown in the notepad : Windows
+stop-sptt {id} - Will stop recording and translation. 
+translate-file {filepath} {language(Optional)} - Ex translate-file recordings/record.wav will translate the file to english and show you the transcription 
 </pre>
